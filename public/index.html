@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Simple Blog</title>
+    <link href="libs/vendors/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <link href="libs/vendors/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand">My Blog</a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="hero-unit">
+        <h1>Backbone rocks !!!</h1></div>
+</div>
+</body>
+<!-- === Frameworks === -->
+<script src="libs/vendors/jquery-1.11.1.min.js"></script>
+
+￼
+<script src="libs/vendors/underscore.js"></script>
+<script src="libs/vendors/backbone.js"></script>
+<!-- === code applicatif === -->
+<script>
+    $(function() {
+        window.Post = Backbone.Model.extend({
+            urlRoot: "/blogposts",
+            initialize: function() {
+                this.listenTo(this, "change", function(){
+                    console.log("title has changed: " + this.get("title"));
+                });
+                /*this.on("change:message", function() {
+                    console.log("le message a changé :", this.get("message"));
+                });*/
+                this.on("change:title", function() {
+                    console.log("le titre a changé :", this.get("title"));
+                });
+            }
+        });
+    });
+</script>
+</html>
